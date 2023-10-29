@@ -1,0 +1,899 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/anis/ontologies/2023/9/projet#"
+     xml:base="http://www.semanticweb.org/anis/ontologies/2023/9/projet"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Est_reclamé_par -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Est_reclamé_par">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Client"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Est_reclamé_par"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Reclamation"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#est_geré_par"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#a_wishlist -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#a_wishlist">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Client"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Wishlist"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#ajouter_categorie -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#ajouter_categorie">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Admin"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Catégorie"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#ajouter_categorie"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#ajouter_commentaire -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#ajouter_commentaire">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Client"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#appartir_categorie -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#appartir_categorie">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Brand"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Catégorie"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#doit_etre_payer -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#doit_etre_payer">
+        <rdf:type rdf:resource="&owl;InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#paiment"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#estCategorieDe -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#estCategorieDe">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Catégorie"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#estCategorieDe"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#estCategoriePrincipaleDe -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#estCategoriePrincipaleDe">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#CategoriePrincipale"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Catégorie"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#estCategorieDe"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#estEnCours -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#estEnCours">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#EnCours"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#passer_commande"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#estProduitDe -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#estProduitDe">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#estReclamer -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#estReclamer">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Client"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#estReclamerCommande -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#estReclamerCommande">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Client"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#estReclamer"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#estReclamerProduit -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#estReclamerProduit">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Client"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#estReclamer"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#estSousCategorieDe -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#estSousCategorieDe">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Catégorie"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#SousCategorie"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#estCategorieDe"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#estTerminée -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#estTerminée">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Terminée"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#passer_commande"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#est_geré_par -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#est_geré_par">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Admin"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Reponse"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#est_geré_par"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#passer_commande -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#passer_commande">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Client"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#passer_commande"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#peut-contenir -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#peut-contenir">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Wishlist"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Adresse -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Adresse">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&owl;topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Utilisateur"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#DateCommande -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#DateCommande">
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&owl;topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Description -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Description">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Reclamation"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Reponse"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Email -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Email">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&owl;topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Utilisateur"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Marque -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Marque">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&owl;topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Mot_de_passe -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Mot_de_passe">
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&owl;topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Utilisateur"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Nom -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Nom">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&owl;topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Utilisateur"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&owl;topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#NumCommande -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#NumCommande">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&owl;topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#NumTel -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#NumTel">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&owl;topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Utilisateur"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Prix -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Prix">
+        <rdfs:range rdf:resource="&xsd;double"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&owl;topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#ProduitsCommandés -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#ProduitsCommandés">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Stock -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Stock">
+        <rdfs:range rdf:resource="&xsd;int"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&owl;topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#UserAssocié -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#UserAssocié">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Reclamation"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&owl;topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#article_body -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#article_body"/>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#article_title -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#article_title">
+        <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#brand_name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#brand_name">
+        <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#category_title -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#category_title"/>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#mode -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#mode">
+        <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#montant -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#montant"/>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#review_score -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#review_score"/>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#review_text -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#review_text"/>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#sous_category_title -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#sous_category_title"/>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#status -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#status"/>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#title -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#title">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#todolist"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Admin -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Admin">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Utilisateur"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Client"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Brand -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Brand">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#appartir_categorie"/>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Catégorie"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#CategoriePrincipale -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#CategoriePrincipale">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Catégorie"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#SousCategorie"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Catégorie -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Catégorie"/>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Client -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Client">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#a_wishlist"/>
+                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Wishlist"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Utilisateur"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#doit_etre_payer"/>
+                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#paiment"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#passer_commande"/>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Reclamation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Comments -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Comments">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#ajouter_commentaire"/>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#EnCours -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#EnCours">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Terminée"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Numérique -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Numérique">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Physique"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Physique -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Physique">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#estCategorieDe"/>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Catégorie"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Reclamation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Reclamation">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#estReclamerProduit"/>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#estReclamerCommande"/>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Reponse -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Reponse">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#estReclamer"/>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Reclamation"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#SousCategorie -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#SousCategorie">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Catégorie"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Terminée -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Terminée">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Utilisateur -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Utilisateur"/>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Wishlist -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Wishlist">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#peut-contenir"/>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#article -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#article"/>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#paiment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#paiment"/>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#todolist -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#todolist"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Brand1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Brand1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Brand"/>
+        <brand_name rdf:datatype="&xsd;string">Jordan</brand_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Client -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Client">
+        <NumTel>123456789</NumTel>
+        <Email>dali.bouderbala@esprit.tn</Email>
+        <Adresse>Menzah</Adresse>
+        <Nom>Dali</Nom>
+        <passer_commande rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Client2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Client2">
+        <Email>anis.ammar@esprit.tn</Email>
+        <Nom>Anis</Nom>
+        <NumTel>1235456789</NumTel>
+        <Adresse>manouba
+</Adresse>
+        <estReclamer rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande1">
+        <UserAssocié>Client</UserAssocié>
+        <NumCommande>1
+</NumCommande>
+        <ProduitsCommandés>Produit1</ProduitsCommandés>
+        <est_geré_par rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Client"/>
+        <estProduitDe rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit1"/>
+        <doit_etre_payer rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#paiment1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit1">
+        <Nom>Pull
+</Nom>
+        <Description>pull en coton</Description>
+        <Prix>100</Prix>
+        <appartir_categorie rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#categorie1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit2">
+        <Description>Desc produit</Description>
+        <Prix>200</Prix>
+        <Nom>jean</Nom>
+        <doit_etre_payer rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#categorie1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Response1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Response1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Reponse"/>
+        <Description rdf:datatype="&xsd;string">On s&apos;excuse pour le problematique , y&apos;aura un refund</Description>
+        <est_geré_par rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#admin"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#admin -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#admin">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Admin"/>
+        <Mot_de_passe rdf:datatype="&xsd;string">1234</Mot_de_passe>
+        <Nom rdf:datatype="&xsd;string">abdou</Nom>
+        <Email rdf:datatype="&xsd;string">abdou@gmail.com</Email>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#article1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#article1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#article"/>
+        <article_body rdf:datatype="&xsd;string">Aprés la premiere partenérait avec notre client , nous avons apporter le premier produit de cette marque</article_body>
+        <article_title rdf:datatype="&xsd;string">Notre nouvelle arrivage</article_title>
+        <est_geré_par rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#admin"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#categorie1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#categorie1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#CategoriePrincipale"/>
+        <category_title rdf:datatype="&xsd;string">Homme</category_title>
+        <estCategoriePrincipaleDe rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#categorie1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#comment1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#comment1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Comments"/>
+        <review_score rdf:datatype="&xsd;decimal">3.5</review_score>
+        <review_text rdf:datatype="&xsd;string">i like this product</review_text>
+        <est_geré_par rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Client"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#paiment1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#paiment1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#paiment"/>
+        <montant rdf:datatype="&xsd;string">200dt</montant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#reclamation1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#reclamation1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Reclamation"/>
+        <Description rdf:datatype="&xsd;string">j&apos;aime pas ce nouveau produit</Description>
+        <estReclamer rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Client"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#souscategorie1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#souscategorie1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#SousCategorie"/>
+        <sous_category_title rdf:datatype="&xsd;string">t-shirt</sous_category_title>
+        <estSousCategorieDe rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#souscategorie1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#todolist -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#todolist">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#todolist"/>
+        <Description rdf:datatype="&xsd;string">Restock the product 1</Description>
+        <title rdf:datatype="&xsd;string">important task</title>
+        <est_geré_par rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#admin"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#wishlist1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#wishlist1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Wishlist"/>
+        <est_geré_par rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Client2"/>
+        <peut-contenir rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit1"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
