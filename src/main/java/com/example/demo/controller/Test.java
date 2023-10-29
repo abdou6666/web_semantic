@@ -60,6 +60,46 @@ public class Test {
 
         return j.getJSONObject("results").getJSONArray("bindings").toString();
     }
+    @GetMapping("/GetCommandesMontantProduit")
+    public String GetCommandesMontantProduit() {
+        String qexec =
+                "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+                        "PREFIX project: <http://www.semanticweb.org/anis/ontologies/2023/9/projet#>\n" +
+                        "\n" +
+                        "# Query to retrieve the names of admins and their associated to-do lists\n" +
+                        "# Query to retrieve all products with their associated categories\n" +
+                        "SELECT ?NumCommande ?montant ?Nom ?Description\n" +
+                        "WHERE {\n" +
+                        "  ?commande rdf:type project:Commande .\n" +
+                        "  ?commande project:NumCommande ?NumCommande .\n" +
+                        "  ?commande project:doit_etre_payer ?paiment .\n" +
+                        "  ?paiment project:montant ?montant .\n" +
+                        "  ?commande project:estProduitDe ?produit .\n" +
+                        "  ?produit project:Description ?Description .\n" +
+                        "  ?produit project:Nom ?Nom .\n" +
+                        "}";
+
+        Model model = JenaEngine.readModel("data/sem.owl");
+
+        QueryExecution qe = QueryExecutionFactory.create(qexec, model);
+        ResultSet results = qe.execSelect();
+
+        // write to a ByteArrayOutputStream
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+
+        ResultSetFormatter.outputAsJSON(outputStream, results);
+
+        // and turn that into a String
+        String json = new String(outputStream.toByteArray());
+
+        JSONObject j = new JSONObject(json);
+        System.out.println(j.getJSONObject("results").getJSONArray("bindings"));
+
+        JSONArray res = j.getJSONObject("results").getJSONArray("bindings");
+
+
+        return j.getJSONObject("results").getJSONArray("bindings").toString();
+    }
     @GetMapping("/reclamations")
         public String getReclamations() {
         String qexec = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
