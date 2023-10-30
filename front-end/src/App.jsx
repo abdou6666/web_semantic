@@ -7,10 +7,13 @@ import DisplayAbdouReclamation from './components/DisplayAbdouReclamation';
 import DisplayAbdouReclamationWithResponses from './components/DisplayAbdouReclamationWithResponses';
 import DisplayAllReclamationsAndResponsesWithClientAndAdminData from './components/DisplayAllReclamationsAndResponsesWithClientAndAdminData';
 import ShowSearchResult from './components/ShowSearchResult';
-import Displayproduct from './components/product/Displayproduct';
+
 
 import Displayarticle from './components/articletodolist/Displayarticle';
 import Displaytodolist from './components/articletodolist/Displaytodolist';
+
+import Displayproduct from './components/product/Displayproduct'
+import Displaybrand from "./components/product/Displaybrand";
 
 const base_url = 'http://localhost:8005/api'
 function App() {
@@ -22,6 +25,9 @@ function App() {
 
     const [allProduct, setAllProduct] = useState([]);
     const [displayAllProduct, setDisplayAllProduct] = useState(false)
+    
+   const [allBrand, setAllBrand] = useState([]);
+  const [displayAllBrand, setDisplayAllBrand] = useState(false);
 
 
     const [allReclamationsAndResponses,setAllReclamationAndResponses] = useState([])
@@ -52,6 +58,7 @@ function App() {
         setAllProduct(data)
     }
 
+
     async function fetchAllArticle() {
         const { data } = await axios.get(`${base_url}/article`)
         setAllArticle(data)
@@ -61,6 +68,12 @@ function App() {
         const { data } = await axios.get(`${base_url}/todolist`)
         setAllTodolist(data)
     }
+
+
+   async function fetchAllBrand() {
+    const { data } = await axios.get(`${base_url}/brands`);
+    setAllBrand(data);
+  }
 
     async function fetchReclamationsAndResponses() {
         const { data } = await axios.get(`${base_url}/abdou/getReclamationsAndResponses`)
@@ -79,6 +92,7 @@ function App() {
     }
 
     useEffect(() => {
+         fetchAllBrand()
         fetchAllProduct()
         fetchAllReclamations()
         fetchOrderAndPayements()
@@ -89,6 +103,10 @@ function App() {
 
     return (
         <div>
+            <div>
+            <button onClick={() => setDisplayAllBrand((prev) => !prev)}> Display All Brands{" "} </button>
+               {allBrand && displayAllBrand && <Displaybrand allBrand={allBrand} />}
+            </div>
             <div>
                 <button onClick={() => setDisplayAllProduct(prev => !prev)}>Display All Product </button>
                 {allProduct && displayAllProduct && <Displayproduct allProduct={allProduct}/>}
