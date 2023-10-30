@@ -17,7 +17,7 @@ import com.example.demo.tools.JenaEngine;
 //import com.example.demo.tools.JenaEngine;
 
 
- 
+
 
 
 
@@ -101,7 +101,7 @@ public class Test {
         return j.getJSONObject("results").getJSONArray("bindings").toString();
     }
     @GetMapping("/reclamations")
-        public String getReclamations() {
+    public String getReclamations() {
         String qexec = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
                 "PREFIX project: <http://www.semanticweb.org/anis/ontologies/2023/9/projet#>\n" +
                 "\n" +
@@ -141,7 +141,7 @@ public class Test {
                 "\n" +
                 "# Query to retrieve the names of admins and their associated to-do lists\n" +
                 "# Query to retrieve all products with their associated categories\n" +
-               "SELECT ?description\n" +
+                "SELECT ?description\n" +
                 "WHERE {\n" +
                 "  ?client a projet:Client ;\n" +
                 "          projet:estReclamer ?produit .\n" +
@@ -260,7 +260,6 @@ public class Test {
 
         return jsonResult;
     }
-
     @GetMapping("/all/comments")
     public String getAllCommentDescriptions() {
         String query = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
@@ -313,6 +312,9 @@ public class Test {
                 "PREFIX project: <http://www.semanticweb.org/anis/ontologies/2023/9/projet#>\n" +
                 "SELECT ?comment ?description ?name\n" +
                 "WHERE {\n" +
+                " project:Comment02 project:Desc ?description ;\n" +
+                "  project:hasComment ?produit .\n" +
+                " ?product project:Name ?name .\n" +
                 " ?comment project:hasComment project:Produit01 ;\n" +
                 "  project:Desc ?description .\n" +
                 "  ?product project:Name ?name .\n" +
@@ -376,6 +378,9 @@ public class Test {
         return jsonResult;
     }
 
+
+
+    /////iheb travail
    
 
 /////iheb travail
