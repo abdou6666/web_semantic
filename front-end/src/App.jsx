@@ -6,11 +6,16 @@ import DisplayAbdouReclamation from './components/DisplayAbdouReclamation';
 import DisplayAbdouReclamationWithResponses from './components/DisplayAbdouReclamationWithResponses';
 import DisplayAllReclamationsAndResponsesWithClientAndAdminData from './components/DisplayAllReclamationsAndResponsesWithClientAndAdminData';
 import ShowSearchResult from './components/ShowSearchResult';
-
+import Displayproduct from './components/product/Displayproduct'
 const base_url = 'http://localhost:8005/api'
 function App() {
   const [allReclamation, setAllReclamation] = useState([]);
+
   const [displayAllReclamation, setDisplayAllReclamation] = useState(false)
+
+  const [allProduct, setAllProduct] = useState([]);
+  const [displayAllProduct, setDisplayAllProduct] = useState(false)
+
 
   const [allReclamationsAndResponses,setAllReclamationAndResponses] = useState([])
   const [displayReclamationAndResponses, setDisplayReclamationAndResponses] = useState(false)
@@ -28,7 +33,10 @@ function App() {
     const { data } = await axios.get(`${base_url}/abdou/reclamations`)
     setAllReclamation(data)
   }
-
+  async function fetchAllProduct() {
+    const { data } = await axios.get(`${base_url}/product`)
+    setAllProduct(data)
+  }
   async function fetchReclamationsAndResponses() {
     const { data } = await axios.get(`${base_url}/abdou/getReclamationsAndResponses`)
     setAllReclamationAndResponses(data)
@@ -46,6 +54,7 @@ function App() {
   }
 
   useEffect(() => {
+    fetchAllProduct()
     fetchAllReclamations()
     fetchReclamationsAndResponses()
     fetchClientsReclamationsWithClienDataAndAdminData()
@@ -53,6 +62,10 @@ function App() {
 
   return (
     <div>
+         <div>
+        <button onClick={() => setDisplayAllProduct(prev => !prev)}>Display All Product </button>
+        {allProduct && displayAllProduct && <Displayproduct allProduct={allProduct}/>}
+      </div>
       <div>
         <button onClick={() => setDisplayAllReclamation(prev => !prev)}>Display All Reclamations </button>
         {allReclamation && displayAllReclamation && <DisplayAbdouReclamation allReclamation={allReclamation}/>}
