@@ -225,6 +225,25 @@
     
 
 
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#hasComment -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#hasComment">
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#hasComment"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Comments"/>
+            </owl:Restriction>
+        </rdfs:range>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#hasComment"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#passer_commande -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#passer_commande">
@@ -279,6 +298,20 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&owl;topObjectProperty"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Desc -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Desc">
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&owl;topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Comments"/>
             </owl:Restriction>
         </rdfs:domain>
     </owl:DatatypeProperty>
@@ -341,6 +374,20 @@
     
 
 
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Name">
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&owl;topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Nom -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Nom">
@@ -349,13 +396,13 @@
         <rdfs:domain>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&owl;topObjectProperty"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Utilisateur"/>
             </owl:Restriction>
         </rdfs:domain>
         <rdfs:domain>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&owl;topObjectProperty"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Utilisateur"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
             </owl:Restriction>
         </rdfs:domain>
     </owl:DatatypeProperty>
@@ -808,6 +855,7 @@
         <Adresse>Menzah</Adresse>
         <Nom>Dali</Nom>
         <passer_commande rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande1"/>
+        <ajouter_commentaire rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Comment01"/>
     </owl:NamedIndividual>
     
 
@@ -821,7 +869,9 @@
         <NumTel>1235456789</NumTel>
         <Adresse>manouba
 </Adresse>
+        <ajouter_commentaire rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Comment02"/>
         <estReclamer rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit2"/>
+        <passer_commande rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#commande2"/>
     </owl:NamedIndividual>
     
 
@@ -836,6 +886,71 @@
         <ProduitsCommandés>Produit1</ProduitsCommandés>
         <estProduitDe rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit1"/>
         <doit_etre_payer rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#paiment1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Comment01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Comment01">
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&owl;topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Comments"/>
+            </owl:Restriction>
+        </rdf:type>
+        <Desc>This is a comment</Desc>
+        <ajouter_commentaire rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Client"/>
+        <hasComment rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit01"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Comment02 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Comment02">
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&owl;topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Comments"/>
+            </owl:Restriction>
+        </rdf:type>
+        <Desc>This is a second comment</Desc>
+        <ajouter_commentaire rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Client2"/>
+        <hasComment rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit01"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit01">
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&owl;topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
+            </owl:Restriction>
+        </rdf:type>
+        <Name>Porduct A
+</Name>
+        <hasComment rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Comment01"/>
+        <hasComment rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Comment02"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit02 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit02">
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&owl;topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
+            </owl:Restriction>
+        </rdf:type>
+        <Desc>Product B
+</Desc>
+        <hasComment rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Comment02"/>
     </owl:NamedIndividual>
     
 
@@ -947,8 +1062,8 @@
         <NumCommande rdf:datatype="&xsd;string">2</NumCommande>
         <UserAssocié rdf:datatype="&xsd;string">client2</UserAssocié>
         <ProduitsCommandés rdf:datatype="&xsd;string">produit2</ProduitsCommandés>
-        <doit_etre_payer rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Client2"/>
         <estProduitDe rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit2"/>
+        <doit_etre_payer rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#paiment2"/>
     </owl:NamedIndividual>
     
 

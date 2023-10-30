@@ -24,7 +24,7 @@ import com.example.demo.tools.JenaEngine;
 
 @RestController
 @RequestMapping(path = "/api",produces = "application/json")
-@CrossOrigin(origins = "http://127.0.0.1:5500")
+@CrossOrigin(origins = "http://localhost:4200")
 public class Test {
     @GetMapping("/admins")
     public String getAdmin() {
@@ -260,6 +260,28 @@ public class Test {
 
         return jsonResult;
     }
+    @GetMapping("/all/comments")
+    public String getAllCommentDescriptions() {
+        String query = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+                "PREFIX project: <http://www.semanticweb.org/anis/ontologies/2023/9/projet#>\n" +
+                "SELECT ?description\n" +
+                "WHERE {\n" +
+                "  ?comment project:Desc ?description .\n" +
+                "}\n";
+
+        Model model = JenaEngine.readModel("data/sem.owl");
+        QueryExecution qe = QueryExecutionFactory.create(query, model);
+        ResultSet results = qe.execSelect();
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ResultSetFormatter.outputAsJSON(outputStream, results);
+
+        String jsonResult = new String(outputStream.toByteArray());
+        System.out.println(jsonResult); // Add this line for debugging
+
+        return jsonResult;
+    }
+
 
     @GetMapping("/comments/products")
     public String getCommentsProducts() {
@@ -293,6 +315,9 @@ public class Test {
                 " project:Comment02 project:Desc ?description ;\n" +
                 "  project:hasComment ?produit .\n" +
                 " ?product project:Name ?name .\n" +
+                " ?comment project:hasComment project:Produit01 ;\n" +
+                "  project:Desc ?description .\n" +
+                "  ?product project:Name ?name .\n" +
                 "}\n";
 
         Model model = JenaEngine.readModel("data/sem.owl");
@@ -356,6 +381,9 @@ public class Test {
 
 
     /////iheb travail
+   
+
+/////iheb travail
     @GetMapping("/article")
     public String getArticle() {
         String qexec = "PREFIX projet: <http://www.semanticweb.org/anis/ontologies/2023/9/projet#>\n" +
