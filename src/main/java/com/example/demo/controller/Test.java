@@ -60,6 +60,46 @@ public class Test {
 
         return j.getJSONObject("results").getJSONArray("bindings").toString();
     }
+    @GetMapping("/GetCommandesMontantProduit")
+    public String GetCommandesMontantProduit() {
+        String qexec =
+                "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+                        "PREFIX project: <http://www.semanticweb.org/anis/ontologies/2023/9/projet#>\n" +
+                        "\n" +
+                        "# Query to retrieve the names of admins and their associated to-do lists\n" +
+                        "# Query to retrieve all products with their associated categories\n" +
+                        "SELECT ?NumCommande ?montant ?Nom ?Description\n" +
+                        "WHERE {\n" +
+                        "  ?commande rdf:type project:Commande .\n" +
+                        "  ?commande project:NumCommande ?NumCommande .\n" +
+                        "  ?commande project:doit_etre_payer ?paiment .\n" +
+                        "  ?paiment project:montant ?montant .\n" +
+                        "  ?commande project:estProduitDe ?produit .\n" +
+                        "  ?produit project:Description ?Description .\n" +
+                        "  ?produit project:Nom ?Nom .\n" +
+                        "}";
+
+        Model model = JenaEngine.readModel("data/sem.owl");
+
+        QueryExecution qe = QueryExecutionFactory.create(qexec, model);
+        ResultSet results = qe.execSelect();
+
+        // write to a ByteArrayOutputStream
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+
+        ResultSetFormatter.outputAsJSON(outputStream, results);
+
+        // and turn that into a String
+        String json = new String(outputStream.toByteArray());
+
+        JSONObject j = new JSONObject(json);
+        System.out.println(j.getJSONObject("results").getJSONArray("bindings"));
+
+        JSONArray res = j.getJSONObject("results").getJSONArray("bindings");
+
+
+        return j.getJSONObject("results").getJSONArray("bindings").toString();
+    }
     @GetMapping("/reclamations")
         public String getReclamations() {
         String qexec = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
@@ -129,6 +169,7 @@ public class Test {
 
         return j.getJSONObject("results").getJSONArray("bindings").toString();
     }
+
     @GetMapping("/product")
     public String getProduct() {
         String qexec = "PREFIX projet: <http://www.semanticweb.org/anis/ontologies/2023/9/projet#>\n" +
@@ -196,6 +237,120 @@ public class Test {
 
 
         return j.getJSONObject("results").getJSONArray("bindings").toString();
+    }
+
+    @GetMapping("/one/comment")
+    public String getOneComment() {
+        String query = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+                "PREFIX project: <http://www.semanticweb.org/anis/ontologies/2023/9/projet#>\n" +
+                "SELECT ?comment ?property ?value\n" +
+                "WHERE {\n" +
+                "  project:Comment01 ?property ?value .\n" +
+                "}\n";
+
+        Model model = JenaEngine.readModel("data/sem.owl");
+        QueryExecution qe = QueryExecutionFactory.create(query, model);
+        ResultSet results = qe.execSelect();
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ResultSetFormatter.outputAsJSON(outputStream, results);
+
+        String jsonResult = new String(outputStream.toByteArray());
+        System.out.println(jsonResult); // Add this line for debugging
+
+        return jsonResult;
+    }
+
+    @GetMapping("/comments/products")
+    public String getCommentsProducts() {
+        String query = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+                "PREFIX project: <http://www.semanticweb.org/anis/ontologies/2023/9/projet#>\n" +
+                "SELECT ?description ?name\n" +
+                "WHERE {\n" +
+                " project:Comment01 project:Desc ?description .\n" +
+                " project:Produit01 project:Name ?name .\n" +
+                "}\n";
+
+        Model model = JenaEngine.readModel("data/sem.owl");
+        QueryExecution qe = QueryExecutionFactory.create(query, model);
+        ResultSet results = qe.execSelect();
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ResultSetFormatter.outputAsJSON(outputStream, results);
+
+        String jsonResult = new String(outputStream.toByteArray());
+        System.out.println(jsonResult); // Add this line for debugging
+
+        return jsonResult;
+    }
+
+    @GetMapping("/produitByComment")
+    public String getProduitNameByComment() {
+        String query = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+                "PREFIX project: <http://www.semanticweb.org/anis/ontologies/2023/9/projet#>\n" +
+                "SELECT ?comment ?description ?name\n" +
+                "WHERE {\n" +
+                " project:Comment02 project:Desc ?description ;\n" +
+                "  project:hasComment ?produit .\n" +
+                " ?product project:Name ?name .\n" +
+                "}\n";
+
+        Model model = JenaEngine.readModel("data/sem.owl");
+        QueryExecution qe = QueryExecutionFactory.create(query, model);
+        ResultSet results = qe.execSelect();
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ResultSetFormatter.outputAsJSON(outputStream, results);
+
+        String jsonResult = new String(outputStream.toByteArray());
+        System.out.println(jsonResult); // Add this line for debugging
+
+        return jsonResult;
+    }
+
+    @GetMapping("/allcomments/product")
+    public String getAllCommentsForProduct() {
+        String query = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+                "PREFIX project: <http://www.semanticweb.org/anis/ontologies/2023/9/projet#>\n" +
+                "SELECT ?comment ?description\n" +
+                "WHERE {\n" +
+                "  project:Produit01 project:hasComment ?comment .\n" +
+                "  ?comment project:Desc ?description .\n" +
+                "}\n";
+
+        Model model = JenaEngine.readModel("data/sem.owl");
+        QueryExecution qe = QueryExecutionFactory.create(query, model);
+        ResultSet results = qe.execSelect();
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ResultSetFormatter.outputAsJSON(outputStream, results);
+
+        String jsonResult = new String(outputStream.toByteArray());
+        System.out.println(jsonResult); // Add this line for debugging
+
+        return jsonResult;
+    }
+    @GetMapping("/client/comment")
+    public String getClientByComment() {
+        String query = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+                "PREFIX project: <http://www.semanticweb.org/anis/ontologies/2023/9/projet#>\n" +
+                "SELECT ?name\n" +
+                "WHERE {\n" +
+                "   ?client project:ajouter_commentaire project:Comment01 ;\n" +
+                "   project:Nom ?name .\n" +
+                "}\n";
+
+        Model model = JenaEngine.readModel("data/sem.owl");
+        QueryExecution qe = QueryExecutionFactory.create(query, model);
+        ResultSet results = qe.execSelect();
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ResultSetFormatter.outputAsJSON(outputStream, results);
+
+        String jsonResult = new String(outputStream.toByteArray());
+        System.out.println(jsonResult); // Add this line for debugging
+
+        return jsonResult;
     }
 
    
