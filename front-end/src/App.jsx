@@ -7,8 +7,14 @@ import DisplayAbdouReclamation from './components/DisplayAbdouReclamation';
 import DisplayAbdouReclamationWithResponses from './components/DisplayAbdouReclamationWithResponses';
 import DisplayAllReclamationsAndResponsesWithClientAndAdminData from './components/DisplayAllReclamationsAndResponsesWithClientAndAdminData';
 import ShowSearchResult from './components/ShowSearchResult';
+
+
+import Displayarticle from './components/articletodolist/Displayarticle';
+import Displaytodolist from './components/articletodolist/Displaytodolist';
+
 import Displayproduct from './components/product/Displayproduct'
 import Displaybrand from "./components/product/Displaybrand";
+
 const base_url = 'http://localhost:8005/api'
 function App() {
     const [allReclamation, setAllReclamation] = useState([]);
@@ -30,6 +36,8 @@ function App() {
     const [allReclamationsAndResponsesWithClientAndAdminData,setAllReclamationsAndResponsesWithClientAndAdminData] = useState([])
     const [displayAllReclamationsAndResponsesWithClientAndAdminData, setDisplayAllReclamationsAndResponsesWithClientAndAdminData] = useState(false)
 
+    const [allArticle, setAllArticle] = useState([]);
+    const [displayarticle, setDisplayAllArticle] = useState(false)
 
     const [searchReclamationInput, setSearchReclamationInput] = useState('')
     const [searchReclamationResult,setSearchReclamationResult] = useState([])
@@ -49,10 +57,24 @@ function App() {
         const { data } = await axios.get(`${base_url}/product`)
         setAllProduct(data)
     }
+
+
+    async function fetchAllArticle() {
+        const { data } = await axios.get(`${base_url}/article`)
+        setAllArticle(data)
+    }
+
+    async function fetchAllTodolist() {
+        const { data } = await axios.get(`${base_url}/todolist`)
+        setAllTodolist(data)
+    }
+
+
    async function fetchAllBrand() {
     const { data } = await axios.get(`${base_url}/brands`);
     setAllBrand(data);
   }
+
     async function fetchReclamationsAndResponses() {
         const { data } = await axios.get(`${base_url}/abdou/getReclamationsAndResponses`)
         setAllReclamationAndResponses(data)
@@ -76,6 +98,7 @@ function App() {
         fetchOrderAndPayements()
         fetchReclamationsAndResponses()
         fetchClientsReclamationsWithClienDataAndAdminData()
+        fetchAllArticle()
     },[])
 
     return (
@@ -104,6 +127,11 @@ function App() {
                 </button>
                 {allReclamationsAndResponsesWithClientAndAdminData && displayAllReclamationsAndResponsesWithClientAndAdminData &&
                     <DisplayAllReclamationsAndResponsesWithClientAndAdminData allReclamationsAndResponsesWithClientAndAdminData={allReclamationsAndResponsesWithClientAndAdminData} />}
+            </div>
+
+            <div>
+                <button onClick={() => setDisplayAllArticle(prev => !prev)}>Display All Article </button>
+                {allArticle && displayarticle && <Displayarticle allArticle={allArticle}/>}
             </div>
 
             <div>
