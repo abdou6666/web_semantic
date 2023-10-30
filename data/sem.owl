@@ -577,15 +577,15 @@
     <owl:Class rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande">
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#passer_commande"/>
-                <owl:onClass rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#doit_etre_payer"/>
+                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#paiment"/>
             </owl:Restriction>
         </owl:equivalentClass>
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#doit_etre_payer"/>
-                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#paiment"/>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#passer_commande"/>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
             </owl:Restriction>
         </owl:equivalentClass>
         <owl:disjointWith rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Reclamation"/>
@@ -652,15 +652,15 @@
     <owl:Class rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Reclamation">
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#estReclamerProduit"/>
-                <owl:onClass rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#estReclamerCommande"/>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
             </owl:Restriction>
         </owl:equivalentClass>
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#estReclamerCommande"/>
-                <owl:onClass rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande"/>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#estReclamerProduit"/>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
             </owl:Restriction>
         </owl:equivalentClass>
@@ -927,6 +927,19 @@
     
 
 
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#client3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#client3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Client"/>
+        <NumTel rdf:datatype="&xsd;string">22224618</NumTel>
+        <Adresse rdf:datatype="&xsd;string">Tunis</Adresse>
+        <Nom rdf:datatype="&xsd;string">client 3</Nom>
+        <Email rdf:datatype="&xsd;string">client3@gmail.com</Email>
+        <passer_commande rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#commande3"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#commande2 -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#commande2">
@@ -936,6 +949,19 @@
         <ProduitsCommandés rdf:datatype="&xsd;string">produit2</ProduitsCommandés>
         <doit_etre_payer rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Client2"/>
         <estProduitDe rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#commande3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#commande3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Commande"/>
+        <NumCommande rdf:datatype="&xsd;string">3</NumCommande>
+        <UserAssocié rdf:datatype="&xsd;string">client3</UserAssocié>
+        <ProduitsCommandés rdf:datatype="&xsd;string">prodiut2</ProduitsCommandés>
+        <estProduitDe rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Produit2"/>
+        <doit_etre_payer rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#client3"/>
     </owl:NamedIndividual>
     
 
@@ -977,6 +1003,16 @@
 </Prix>
         <Description rdf:datatype="&xsd;string">vest blue fonce</Description>
         <Nom rdf:datatype="&xsd;string">veste blue</Nom>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anis/ontologies/2023/9/projet#reclaamtion3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anis/ontologies/2023/9/projet#reclaamtion3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#Reclamation"/>
+        <Description rdf:datatype="&xsd;string">jj&apos;ai pas recu le produit que j&apos;ai achete</Description>
+        <estReclamer rdf:resource="http://www.semanticweb.org/anis/ontologies/2023/9/projet#client3"/>
     </owl:NamedIndividual>
     
 
