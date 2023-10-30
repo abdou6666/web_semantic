@@ -8,6 +8,7 @@ import DisplayAbdouReclamationWithResponses from './components/DisplayAbdouRecla
 import DisplayAllReclamationsAndResponsesWithClientAndAdminData from './components/DisplayAllReclamationsAndResponsesWithClientAndAdminData';
 import ShowSearchResult from './components/ShowSearchResult';
 import Displayproduct from './components/product/Displayproduct'
+import Displaybrand from "./components/product/Displaybrand";
 const base_url = 'http://localhost:8005/api'
 function App() {
     const [allReclamation, setAllReclamation] = useState([]);
@@ -18,6 +19,9 @@ function App() {
 
     const [allProduct, setAllProduct] = useState([]);
     const [displayAllProduct, setDisplayAllProduct] = useState(false)
+    
+   const [allBrand, setAllBrand] = useState([]);
+  const [displayAllBrand, setDisplayAllBrand] = useState(false);
 
 
     const [allReclamationsAndResponses,setAllReclamationAndResponses] = useState([])
@@ -45,6 +49,10 @@ function App() {
         const { data } = await axios.get(`${base_url}/product`)
         setAllProduct(data)
     }
+   async function fetchAllBrand() {
+    const { data } = await axios.get(`${base_url}/brands`);
+    setAllBrand(data);
+  }
     async function fetchReclamationsAndResponses() {
         const { data } = await axios.get(`${base_url}/abdou/getReclamationsAndResponses`)
         setAllReclamationAndResponses(data)
@@ -62,6 +70,7 @@ function App() {
     }
 
     useEffect(() => {
+         fetchAllBrand()
         fetchAllProduct()
         fetchAllReclamations()
         fetchOrderAndPayements()
@@ -71,6 +80,10 @@ function App() {
 
     return (
         <div>
+            <div>
+            <button onClick={() => setDisplayAllBrand((prev) => !prev)}> Display All Brands{" "} </button>
+               {allBrand && displayAllBrand && <Displaybrand allBrand={allBrand} />}
+            </div>
             <div>
                 <button onClick={() => setDisplayAllProduct(prev => !prev)}>Display All Product </button>
                 {allProduct && displayAllProduct && <Displayproduct allProduct={allProduct}/>}
