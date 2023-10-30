@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import axios from 'axios';
 import { useEffect } from 'react';
+import DisplayAllOrdersAndPayements from './components/DisplayAllOrdersAndPayements';
 import DisplayAbdouReclamation from './components/DisplayAbdouReclamation';
 import DisplayAbdouReclamationWithResponses from './components/DisplayAbdouReclamationWithResponses';
 import DisplayAllReclamationsAndResponsesWithClientAndAdminData from './components/DisplayAllReclamationsAndResponsesWithClientAndAdminData';
@@ -12,6 +13,8 @@ function App() {
     const [allReclamation, setAllReclamation] = useState([]);
 
     const [displayAllReclamation, setDisplayAllReclamation] = useState(false)
+    const [allOrderAndPayements, setAllOrderAndPayements] = useState([]);
+    const [displayAllOrderAndPayements, setDisplayAllOrderAndPayements] = useState(false)
 
     const [allProduct, setAllProduct] = useState([]);
     const [displayAllProduct, setDisplayAllProduct] = useState(false)
@@ -28,6 +31,11 @@ function App() {
     const [searchReclamationResult,setSearchReclamationResult] = useState([])
     const [showResult,setShowResult] = useState(false)
 
+    async function fetchOrderAndPayements() {
+        const {data} = await axios.get(`${base_url}/GetCommandesMontantProduit`)
+        setAllOrderAndPayements(data)
+
+    }
 
     async function fetchAllReclamations() {
         const { data } = await axios.get(`${base_url}/abdou/reclamations`)
@@ -56,6 +64,7 @@ function App() {
     useEffect(() => {
         fetchAllProduct()
         fetchAllReclamations()
+        fetchOrderAndPayements()
         fetchReclamationsAndResponses()
         fetchClientsReclamationsWithClienDataAndAdminData()
     },[])
@@ -88,6 +97,12 @@ function App() {
                 <input type="text" placeholder='search for reclamation' value={searchReclamationInput} onChange={(e) => setSearchReclamationInput(e.target.value)} />
                 <button onClick={searchReclamation}>Search</button>
                 {showResult && searchReclamationResult && <ShowSearchResult searchReclamationResult={searchReclamationResult}/> }
+            </div>
+            <div>
+                <button onClick={()=>setDisplayAllOrderAndPayements(prev=>!prev)}>Display All Order And Payements</button>
+                {allOrderAndPayements && displayAllOrderAndPayements &&
+                    <DisplayAllOrdersAndPayements allOrderAndPayements={allOrderAndPayements}/>}
+
             </div>
         </div>
     )
