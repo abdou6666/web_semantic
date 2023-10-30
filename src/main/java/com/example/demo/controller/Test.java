@@ -451,4 +451,43 @@ public class Test {
 
         return j.getJSONObject("results").getJSONArray("bindings").toString();
     }
+    @GetMapping("/searchProduct/{nom}")
+    public String searchReclamation(@PathVariable("nom") String nom) {
+
+        String search = nom; // Set the description you want to search for
+        String queryString = "PREFIX projet: <http://www.semanticweb.org/anis/ontologies/2023/9/projet#>\n" +
+                "\n" +
+                "# Query to search for reclamations based on description\n" +
+                "SELECT ?produit ?Nom\n" +
+                "WHERE {\n" +
+                "  ?produit a projet:Produit .\n" +
+                "  ?produit projet:Nom ?Nom .\n" +
+                "  FILTER regex(?Nom, \"" + search + "\", \"i\")\n" +
+                "}";
+
+
+        String qexec = queryString;
+
+
+        Model model = JenaEngine.readModel("data/sem.owl");
+
+        QueryExecution qe = QueryExecutionFactory.create(qexec, model);
+        ResultSet results = qe.execSelect();
+
+        // write to a ByteArrayOutputStream
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+
+        ResultSetFormatter.outputAsJSON(outputStream, results);
+
+        // and turn that into a String
+        String json = new String(outputStream.toByteArray());
+
+        JSONObject j = new JSONObject(json);
+        System.out.println(j.getJSONObject("results").getJSONArray("bindings"));
+
+        JSONArray res = j.getJSONObject("results").getJSONArray("bindings");
+
+
+        return j.getJSONObject("results").getJSONArray("bindings").toString();
+    }
 }
